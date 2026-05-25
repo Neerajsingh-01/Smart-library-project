@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Library</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="loginPage" class="auth-page">
+    <section class="auth-card">
+      <p class="eyebrow">College Library Portal</p>
+      <h1>Smart Library</h1>
+      <input id="username" placeholder="Student/Admin ID" autocomplete="username">
+      <input id="password" placeholder="Password" type="password" autocomplete="current-password">
+      <button onclick="login()">Login</button>
+      <!--<p class="hint">Student: STU001 / 12345 | Admin: ADM001 / admin123</p> -->
+    </section>
+  </main>
+
+  <main id="mainApp" class="hidden">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Smart College Library</p>
+        <h1>Library Dashboard</h1>
+        <p id="studentInfo"></p>
+      </div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </header>
+
+    <div id="message" class="message hidden"></div>
+    <nav id="tabs" class="tabs"></nav>
+
+    <section id="dashboardView" class="view active">
+      <div id="stats" class="stats-grid"></div>
+      <section class="panel">
+        <div class="section-head">
+          <div>
+            <h2>Books</h2>
+            <p>Search and access library books virtually.</p>
+          </div>
+        </div>
+        <div class="filters">
+          <input id="search" placeholder="Search book, author, subject, course">
+          <select id="courseFilter"><option value="">All courses</option></select>
+          <select id="semesterFilter"><option value="">All semesters</option></select>
+          <select id="subjectFilter"><option value="">All subjects</option></select>
+        </div>
+        <div id="results" class="book-grid"></div>
+      </section>
+    </section>
+
+    <section id="suggestView" class="view">
+      <section class="panel two-column">
+        <form id="suggestionForm" class="stack" onsubmit="submitSuggestion(event)">
+          <h2>Suggest Book</h2>
+          <input id="suggestName" placeholder="Book name" required>
+          <input id="suggestAuthor" placeholder="Author" required>
+          <input id="suggestEdition" placeholder="Edition">
+          <button type="submit">Send Suggestion</button>
+        </form>
+        <div>
+          <h2>My Suggestions</h2>
+          <div id="suggestionsList" class="list"></div>
+        </div>
+      </section>
+    </section>
+
+    <section id="profileView" class="view">
+      <section class="panel">
+        <h2>My Issued Books</h2>
+        <div id="issuedList" class="list"></div>
+      </section>
+      <section class="panel">
+        <h2>My Notifications</h2>
+        <div id="notificationsList" class="list"></div>
+      </section>
+    </section>
+
+    <section id="adminView" class="view">
+      <section class="panel">
+        <div class="section-head">
+          <div>
+            <h2>Manage Books</h2>
+            <p>Add new books or update available copies.</p>
+          </div>
+        </div>
+        <form id="bookForm" class="admin-form" onsubmit="saveBook(event)">
+          <input id="bookId" type="hidden">
+          <input id="bookName" placeholder="Book name" required>
+          <input id="bookAuthor" placeholder="Author" required>
+          <input id="bookPublisher" placeholder="Publisher">
+          <input id="bookSubject" placeholder="Subject">
+          <input id="bookCourse" placeholder="Course">
+          <input id="bookSemester" type="number" min="1" placeholder="Semester">
+          <input id="bookTotal" type="number" min="0" placeholder="Total copies" required>
+          <input id="bookAvailable" type="number" min="0" placeholder="Available copies" required>
+          <input id="bookRack" placeholder="Rack">
+          <button type="submit">Save Book</button>
+          <button type="button" class="secondary" onclick="resetBookForm()">Clear</button>
+        </form>
+        <div id="adminBooks" class="book-grid"></div>
+      </section>
+
+      <section class="panel two-column">
+        <div>
+          <h2>Issued Records</h2>
+          <div id="issuedRecords" class="list"></div>
+        </div>
+        <div>
+          <h2>Users</h2>
+          <div id="usersList" class="list"></div>
+        </div>
+      </section>
+
+      <section class="panel two-column">
+        <div>
+          <h2>Book Suggestions</h2>
+          <div id="adminSuggestions" class="list"></div>
+        </div>
+        <div>
+          <h2>Notifications</h2>
+          <div id="adminNotifications" class="list"></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="js/app.js?v=20260524-1"></script>
+</body>
+</html>
